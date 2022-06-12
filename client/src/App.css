@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+body{
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: sans-serif;
+}
+.App {
+  text-align: center;
+  background: #1B1838;
+  height: 100vh;
+  top: 0;
+  position: absolute;
+  width: 100%;
+}
+.header{
+  display: flex;
+  /* justify-content: center;
+  align-items: center; */
+  font-size: 44px;
+  gap: 30px;
+  margin-top: 10%;
+}
+.header span{
+  display: flex;
+  width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  font-family: 'Pacifico';
+  color:#2E313D
+}
+.form{
+  position: absolute;
+  background: #FFFFFF;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  min-height: 600px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 20px;
+}
+.form input{
+  height: 50px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 20px;
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid grey;
+  border-left: none;
+  color: grey;
+  /* border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px; */
+
+  /* border-bottom: 1px solid grey; */
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(175, 172, 172);
+  font-size: 16px;
+  opacity: 1; /* Firefox */
+}
+.signupask{
+  font-size: 14px;
+  color: grey;
+  margin-top: 10px;
+}
+.signUp{
+  color: #9E8BF3;
+  font-weight: 500;
+}
+.form input:focus{
+  outline: none;
+  background: #FFFFFF;
+}
+.form input::after{
+  background: #FFFFFF;
+}
+.form button{
+  padding:10px 30px;
+  /* position: absolute; */
+  /* bottom: 0; */
+  font-size: 16px;
+  color: #336CFE;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  margin-top: 20px;
+  background: #7166E8;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 40px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+.name, .fullname{
+  display: flex;
+  justify-content: space-around;
+  width: 75%;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  border: none;
+  /* margin-top: 5%; */
+
+}
+.roomId{
+  display: flex;
+  justify-content: space-around;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+  /* border: 1px solid #2E313D; */
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.avt1{
+  padding: 0px 10px; 
+  position: relative;
+  width: 50px;
+  border-top: none;
+  border-left: none;
+  /* border-top-left-radius: 40px; */
+  /* border-bottom-left-radius: 40px; */
+
+  border-bottom: 1px solid grey;
+
+}
+.avt1 img{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* bottom: 0; */
+}
+.avatars{
+  width: 30px;
+}
+.goNext img{
+  width: 20px;
+  float: right;
+}
+.pass{
+  letter-spacing: 10px;
+}
+.pass::placeholder{
+  letter-spacing: 0px;
+}
+.content{
+  position: relative;
+}
+.label{
+  font-weight: 500;
+  color: #9E8BF3;
+  font-family: sans-serif;
+}
+.set{
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.set2{
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.presentation{
+  /* position: absolute; */
+  width: 100%;
+  height: 33%;
+  /* bottom: 20px; */
+}
+.presentation img{
+  height: 60%;
+}
+.gitIllustration{
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  /* transform: translate(5%); */
+}
+.g-signin{
+  margin-left: auto;
+  margin-right: auto;
+}
+p {
+  width: 100%; 
+  text-align: center; 
+  border-bottom: 1px solid grey; 
+  line-height: 0.1em;
+  color: grey;
+  margin: 10px 0 20px; 
+} 
+
+p span { 
+   background:#fff; 
+   padding:0 10px; 
+}
+
+@media (max-width: 900px){
+  .form{
+    width: 100%;
+    height: 100%;
+    border-radius: 0px;
+  }
+  .label{
+    font-size: 14px;
+  }
+  .presentation{
+    /* position: absolute; */
+    width: 100%;
+    height: 25%;
+    /* bottom: 10px; */
+  }
+  .presentation img{
+    height: 60%;
+  }
+  .name, .fullname{
+    width: 80%;
+  }
+  .roomId{
+    width: 80%;
+  }
+}

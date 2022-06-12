@@ -1,0 +1,9 @@
+.logoutButton  button{
+    background: #1B1838 !important;
+    color: #FFFFFF !important;
+    font-size: 15px !important;
+}
+.logoutButton div{
+    background: #1B1838 !important;
+    margin-right: 0px !important;
+}
