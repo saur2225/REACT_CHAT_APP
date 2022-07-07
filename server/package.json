@@ -19,6 +19,7 @@
     "firebase-admin": "^10.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.4",
+    "nodemailer": "^6.7.5",
     "nodemon": "^2.0.15",
     "shelljs": "^0.8.4",
     "socket.io": "^4.4.0"

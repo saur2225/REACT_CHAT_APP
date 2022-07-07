@@ -5,9 +5,27 @@ import GoogleButton from 'react-google-button';
 
 function Login(props) {
     const clientId = "766883049818-9cebifn20g9ob7s52lpvkfm4hsboic95.apps.googleusercontent.com";
-
-
     const onLoginSuccess = (res) => {
+        console.log(res);
+
+        fetch('http://localhost:9100/app/checkUser', {
+            method: 'POST',
+            body: JSON.stringify({
+                    email: res.profileObj.email,
+                    name: res.profileObj.name,
+                }),
+            headers: {
+                "content-type": "application/json; charset=UTF-8"
+            }
+        }).then(response => {
+            response.json().then((data) => {
+                console.log("data received", data);
+                props.googleLogin(data);
+            })
+        }).catch(() => {
+            console.log("login failed");
+        })
+
         props.checkLogin(true);
     }
     const onFailureSuccess = () => {

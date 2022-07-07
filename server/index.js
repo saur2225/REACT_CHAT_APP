@@ -25,7 +25,7 @@ var io = require( 'socket.io' )( http,  {
     }
   } );
 
-const PORT = 9999;
+const PORT = 9100;
 
 http.listen( PORT, function() {
     console.log( 'listening on *:'+ PORT );
@@ -53,7 +53,7 @@ io.on("connection", (socket) => {
             }
             else{
                 if(docs.password === data.password){
-                    res.send(docs);
+                    // res.send(docs);
                 }
             }
         });

@@ -7,9 +7,11 @@ import Logout from './Logout';
 import { GoogleLogout } from 'react-google-login';
 import './chats.css';
 
-function Chat({ socket, friend, loggedInUser, allMsgs, currentRoom }) {
+function Chat({ socket, friend, loggedInUser, allMsgs, currentRoom, loginCheck }) {
+    console.log("cloggedInUser", loggedInUser[0].messages);
+    console.log("allMsgs", allMsgs);
     const [currentMesage, setCurrentMessage] = useState("");
-    const [receivedMsg, setreceivedMsg] = useState(loggedInUser[0].messages);
+    const [receivedMsg, setreceivedMsg] = useState(allMsgs);
     const [showChats, setShowChats] = useState(false);
     const clientId = "766883049818-9cebifn20g9ob7s52lpvkfm4hsboic95.apps.googleusercontent.com";
     
@@ -27,19 +29,22 @@ function Chat({ socket, friend, loggedInUser, allMsgs, currentRoom }) {
                 socket.emit("send_message", messageData)
                 setreceivedMsg(previousData => [...previousData, messageData]);
                 setCurrentMessage('');
+                setTimeout(() => {
+                    let elem = document.getElementsByClassName('msg_container');
+                    console.log(elem[0].scrollHeight);
+                    elem[0].scrollTop = elem[0].scrollHeight+100;
+
+                }, 100)
             }
     }
-        socket.on("receive_all_messages", (data) => {
-            if(data.length !== 0){
-                setShowChats(true);
-            }
-            setreceivedMsg(data);
-            return () => {
-                setreceivedMsg([]);
-            };
-        });
         useEffect(() => {
-            if(loggedInUser[0].messages.length > 0){
+            setTimeout(() => {
+                let elem = document.getElementsByClassName('msg_container');
+                console.log(elem[0].scrollHeight);
+                elem[0].scrollTop = elem[0].scrollHeight+100;
+
+            }, 100)
+            if(allMsgs.length > 0){
                 setShowChats(true);
             }
             // setreceivedMsg(...loggedInUser[0].messages);
@@ -49,9 +54,9 @@ function Chat({ socket, friend, loggedInUser, allMsgs, currentRoom }) {
             });
        },[socket])
 
-    //    const onSignoutSuccess = () => {
-    //     loginCheck(false);
-    //    }
+       const onSignoutSuccess = () => {
+            loginCheck(false);
+       }
 
     return (
         <div className="main_container">
@@ -59,7 +64,7 @@ function Chat({ socket, friend, loggedInUser, allMsgs, currentRoom }) {
             </div>
             <div className="chat-body">
                 <div className="logoutContainer">
-                    {/* <Logout signoutCheck= {onSignoutSuccess}/> */}
+                    <Logout signoutCheck= {onSignoutSuccess}/>
                 </div>
                 <div className="msg_container">
                     {!showChats && <div className="empty">

@@ -8,7 +8,7 @@ import Loginform from './loginForm/Loginform';
 import chat from './Message';
 
 
-const socket = io.connect(`${window.location.host.split(':')[0]}:9999`)
+const socket = io.connect(`${window.location.host.split(':')[0]}:9100`)
 
 const clientId = '766883049818-9cebifn20g9ob7s52lpvkfm4hsboic95.apps.googleusercontent.com';
 
@@ -51,29 +51,30 @@ function App() {
   },[socket])
 
   const userSelected = (userData) => {
+    console.log([userData.uniqueId, currUser[0].uniqueId].sort().join("--"));
     setPrivateRoom([userData.uniqueId, currUser[0].uniqueId].sort().join("--"));
     socket.emit('join_room', [userData.uniqueId, currUser[0].uniqueId].sort().join("--"));
     socket.emit('user_selected', userData);
 
-    getAllMsgs();
-
+    getAllMsgs([userData.uniqueId, currUser[0].uniqueId].sort().join("--"));
+    console.log("get ll ca",privateRoom);
     setUserData(userData);
-    setchatUser(true);
   }
 
-  const getAllMsgs = () => {
-    fetch('http://localhost:9999/app/getAllMsgs', {
+  const getAllMsgs = (pr) => {
+    fetch('http://localhost:9100/app/getAllMsgs', {
       method: 'POST',
       body: JSON.stringify({
               email: currUser[0].email,
+              room: pr
           }),
       headers: {
           "content-type": "application/json; charset=UTF-8"
       }
   }).then(response => {
     response.json().then((data) => {
-      setallUserMsgs(data[0].messages);
-      console.log("haa ji", allUserMgs)
+      setallUserMsgs(data);
+      setchatUser(true);
     })
   }).catch(() => {
       console.log("login failed");
@@ -87,14 +88,15 @@ function App() {
 
 
   const setLoginState = (val) => {
+    console.log("ye h val", val);
     setshowChatSection(val);
   }
   return (
     <div className="App">
       {!showChatSection && <Loginform socket={socket} loginState = {setLoginState} setAllUsers = {setAllUsersData}/>}
       {/* {showChatSection && <Chat socket={socket} username={username} room={room} loginCheck={setLoginSetup}/>} */}
-      {showChatSection && !chatUser && <UserScreen socket={socket} allUsers = {allDbUsers} chatWithUser = {userSelected}/>}
-      {chatUser && <Chat socket={socket} friend = {userData} loggedInUser = {currUser} allMsgs = {allUserMgs} currentRoom = {[userData.uniqueId, currUser[0].uniqueId].sort().join("--")}/>}
+      {showChatSection && !chatUser && <UserScreen socket={socket} allUsers = {allDbUsers} chatWithUser = {userSelected} loginCheck={setLoginState}/>}
+      {chatUser && showChatSection && <Chat socket={socket} friend = {userData} loggedInUser = {currUser} allMsgs = {allUserMgs} currentRoom = {[userData.uniqueId, currUser[0].uniqueId].sort().join("--")} loginCheck={setLoginState}/>}
     </div>
   );
 }

@@ -10,7 +10,7 @@ const signUpTemplate = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        // required: true
     },
     uniqueId: {
         type: String,

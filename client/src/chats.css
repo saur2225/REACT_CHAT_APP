@@ -29,7 +29,7 @@
     width: 100%;
     box-sizing: border-box;
     overflow: auto;
-    height: 84%;
+    height: 75%;
     gap: 30px;
 }
 .chat-footer{
